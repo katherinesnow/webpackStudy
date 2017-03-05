@@ -1,0 +1,22 @@
+{
+  "name": "webpackstudy",
+  "version": "1.0.0",
+  "description": "webpack 工具详细学习案例整理",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katherinesnow/webpackStudy.git"
+  },
+  "keywords": [
+    "webpack",
+    "study"
+  ],
+  "author": "zss",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/katherinesnow/webpackStudy/issues"
+  }
+}
