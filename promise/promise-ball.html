@@ -1,0 +1,64 @@
+<html>  
+<head>  
+    <title>Ball move</title>  
+    <style type="text/css">  
+        .ball {  
+            width: 40px;  
+            height: 40px;  
+            border-radius: 20px;  
+            margin-left: 10px;  
+        }  
+        .ball1 {  
+            background: #ff0000;  
+        }  
+        .ball2 {  
+            background: #00ff00;  
+        }  
+        .ball3 {  
+            background: #0000ff;  
+        }  
+    </style>  
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>  
+</head>  
+<body>  
+    <div class="ball ball1"></div>  
+    <div class="ball ball2"></div>  
+    <div class="ball ball3"></div>  
+  
+  
+    <script type="text/javascript">  
+        /**
+         * [moving description]
+         * @param  {[type]} ball [要移动的小球对象]
+         * @param  {[type]} pos  [要移动的距离]
+         * @return {[type]}      [promise对象]
+         */
+        function moving (ball, pos) {  
+            return new Promise(function (resolve, reject) {  
+                var marginLeft = parseInt(ball.css('margin-left'));  
+                if (marginLeft != pos) {  
+                    var timerId = setInterval(function() {  
+                        marginLeft = marginLeft + 1;  
+                        ball.css('margin-left', marginLeft); 
+
+                        if (marginLeft == pos) {  
+                            clearInterval(timerId);  
+                            resolve();  
+                        }  
+                        
+                    }, 20);  
+                } else {  
+                    resolve();  
+                }  
+            });  
+        }  
+  
+  
+        moving($('.ball1'), 100).then(function() {  
+            return moving($('.ball2'), 150);  
+        }).then(function() {  
+            return moving($('.ball3'), 200);  
+        });  
+    </script>  
+</body>  
+</html>  
