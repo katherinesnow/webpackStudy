@@ -18,5 +18,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/katherinesnow/webpackStudy/issues"
+  },
+  "devDependencies": {
+    "q": "^1.4.1"
   }
 }
