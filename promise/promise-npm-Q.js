@@ -43,7 +43,6 @@ function pReadFile(file) {
 	},1000);
 
 	console.log("异步执行");
-
 	return defer.promise;
 }
 
@@ -66,63 +65,63 @@ pReadFile("file.txt").then(function (value) {
  * If value is not a promise, returns a promise that is fulfilled with value.类似于Promise.resolve()中 "不是Promise对象的用法"的用法
  */
 
-var p = Q.defer();
-console.log(Q(p.promise),'传入一个Promise对象');// {state:pending}
-console.log(Q("hello"),"不是一个promise对象");// {state:'fulfilled',value:'hello'}
+// var p = Q.defer();
+// console.log(Q(p.promise),'传入一个Promise对象');// {state:pending}
+// console.log(Q("hello"),"不是一个promise对象");// {state:'fulfilled',value:'hello'}
 
 
-//Q.reject(reason); // 类似于原生的Promise.reject()
+// //Q.reject(reason); // 类似于原生的Promise.reject()
 
 
-/***********************************************************************************************************
-/**
- * State Inspection Methods
- * 1. promise.isFulfilled()
- * 2. promise.isRejected()
- * 3. promise.isPending()
- * 4. promise.inspect()
- */
+// /***********************************************************************************************************
+// /**
+//  * State Inspection Methods
+//  * 1. promise.isFulfilled()
+//  * 2. promise.isRejected()
+//  * 3. promise.isPending()
+//  * 4. promise.inspect()
+//  */
 
-console.log(Q("hello").isFulfilled(),"fullfilled?");// true
-
-
-// ES6Promise 原生比使用Q更加简单直接???
-// 原生ES6 Promise
-console.log("start");
-var delay1 =  new Promise(function (resolve,reject) {
-    setTimeout( () => resolve("abc") ,2000)
-});
-
-delay1.then(function (item) {
-    return  new Promise(function (resolve,reject) {
-        console.log("delay1" + item);
-        setTimeout( () => resolve("def") ,2000);
-    });
-}).then(function (item) {
-    console.log("delay2"+item);
-});
-
-console.log("end");
+// console.log(Q("hello").isFulfilled(),"fullfilled?");// true
 
 
-//Q 写法
-console.log("start");
-var deferred = Q.defer();
-setTimeout( () => deferred.resolve("abc"), 2000);
-var delay = deferred.promise;
+// // ES6Promise 原生比使用Q更加简单直接???
+// // 原生ES6 Promise
+// console.log("start");
+// var delay1 =  new Promise(function (resolve,reject) {
+//     setTimeout( () => resolve("abc") ,2000)
+// });
 
-delay.then(function (val) {
-    var deferred = Q.defer();
-    console.log("delay1"+val);
-    setTimeout(function () {
-        deferred.resolve("def");
-    },2000)
-    return deferred.promise;
-}).then(function (val) {
-    console.log("delay2"+val);
-});
+// delay1.then(function (item) {
+//     return  new Promise(function (resolve,reject) {
+//         console.log("delay1" + item);
+//         setTimeout( () => resolve("def") ,2000);
+//     });
+// }).then(function (item) {
+//     console.log("delay2"+item);
+// });
 
-console.log("end");
+// console.log("end");
+
+
+// //Q 写法
+// console.log("start");
+// var deferred = Q.defer();
+// setTimeout( () => deferred.resolve("abc"), 2000);
+// var delay = deferred.promise;
+
+// delay.then(function (val) {
+//     var deferred = Q.defer();
+//     console.log("delay1"+val);
+//     setTimeout(function () {
+//         deferred.resolve("def");
+//     },2000)
+//     return deferred.promise;
+// }).then(function (val) {
+//     console.log("delay2"+val);
+// });
+
+// console.log("end");
 
 
 
